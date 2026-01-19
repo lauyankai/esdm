@@ -175,7 +175,235 @@ function (JSONModel, Device) {
             var oModel = new JSONModel(oData);
             oModel.setDefaultBindingMode("TwoWay");
             return oModel;
-        }
+            },
+
+            /**
+             * Creates a JSON model containing mock advisor dashboard data with multiple advisees.
+             * @returns {sap.ui.model.json.JSONModel} The advisor dashboard model.
+             */
+            createAdvisorDashboardModel: function () {
+                var oData = {
+                    advisorInfo: {
+                        name: "Dr. Assoc. Prof. Noorminshah",
+                        department: "Computer Science",
+                        totalAdvisees: 12
+                    },
+                    summary: {
+                        totalAdvisees: 12,
+                        atRiskCount: 3,
+                        goodStandingCount: 8,
+                        averageGPA: "3.42"
+                    },
+                    advisees: [
+                        {
+                            studentId: "A23CS0098",
+                            name: "Lau Yan Kai",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.75,
+                            gpaState: "Success",
+                            creditsCompleted: 84,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-15",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A23CS0022",
+                            name: "Joanne Ching",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.92,
+                            gpaState: "Success",
+                            creditsCompleted: 88,
+                            creditsRequired: 120,
+                            academicStanding: "Dean's List",
+                            standingState: "Success",
+                            lastContact: "2026-01-10",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A23CS0061",
+                            name: "Chew Chu Xian",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.88,
+                            gpaState: "Success",
+                            creditsCompleted: 86,
+                            creditsRequired: 120,
+                            academicStanding: "Dean's List",
+                            standingState: "Success",
+                            lastContact: "2026-01-12",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A24CS0105",
+                            name: "Ahmad bin Hassan",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 2.45,
+                            gpaState: "Warning",
+                            creditsCompleted: 48,
+                            creditsRequired: 120,
+                            academicStanding: "At Risk",
+                            standingState: "Warning",
+                            lastContact: "2026-01-18",
+                            isAtRisk: true
+                        },
+                        {
+                            studentId: "A24CS0089",
+                            name: "Sarah Lee",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 3.55,
+                            gpaState: "Success",
+                            creditsCompleted: 52,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-08",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A24CS0134",
+                            name: "Kumar Raj",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 3.25,
+                            gpaState: "Success",
+                            creditsCompleted: 50,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-14",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A25CS0078",
+                            name: "Emily Tan",
+                            major: "Computer Science",
+                            academicYear: "Year 1",
+                            currentGPA: 2.15,
+                            gpaState: "Error",
+                            creditsCompleted: 18,
+                            creditsRequired: 120,
+                            academicStanding: "Academic Probation",
+                            standingState: "Error",
+                            lastContact: "2026-01-17",
+                            isAtRisk: true
+                        },
+                        {
+                            studentId: "A25CS0092",
+                            name: "Michael Wong",
+                            major: "Computer Science",
+                            academicYear: "Year 1",
+                            currentGPA: 3.65,
+                            gpaState: "Success",
+                            creditsCompleted: 20,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-11",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A23CS0145",
+                            name: "Fatimah Ibrahim",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.48,
+                            gpaState: "Success",
+                            creditsCompleted: 80,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-09",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A24CS0156",
+                            name: "David Chen",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 2.85,
+                            gpaState: "Warning",
+                            creditsCompleted: 46,
+                            creditsRequired: 120,
+                            academicStanding: "At Risk",
+                            standingState: "Warning",
+                            lastContact: "2026-01-16",
+                            isAtRisk: true
+                        },
+                        {
+                            studentId: "A23CS0167",
+                            name: "Nurul Huda",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.72,
+                            gpaState: "Success",
+                            creditsCompleted: 82,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-13",
+                            isAtRisk: false
+                        },
+                        {
+                            studentId: "A24CS0178",
+                            name: "Jason Lim",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 3.38,
+                            gpaState: "Success",
+                            creditsCompleted: 54,
+                            creditsRequired: 120,
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            lastContact: "2026-01-07",
+                            isAtRisk: false
+                        }
+                    ],
+                    recentAlerts: [
+                        {
+                            title: "Low Attendance Alert - Emily Tan",
+                            description: "Student has missed 4 consecutive classes in CS201",
+                            icon: "sap-icon://alert",
+                            date: "2 days ago",
+                            severity: "Error",
+                            studentId: "A25CS0078"
+                        },
+                        {
+                            title: "Grade Alert - Ahmad bin Hassan",
+                            description: "Current grade dropped to D in Database Systems",
+                            icon: "sap-icon://warning",
+                            date: "3 days ago",
+                            severity: "Warning",
+                            studentId: "A24CS0105"
+                        },
+                        {
+                            title: "Dean's List Achievement - Joanne Ching",
+                            description: "Student achieved Dean's List for Fall 2025 semester",
+                            icon: "sap-icon://employee-approvals",
+                            date: "5 days ago",
+                            severity: "Success",
+                            studentId: "A23CS0022"
+                        },
+                        {
+                            title: "Advising Session Requested - David Chen",
+                            description: "Student has requested an advising appointment",
+                            icon: "sap-icon://appointment",
+                            date: "1 week ago",
+                            severity: "Information",
+                            studentId: "A24CS0156"
+                        }
+                    ]
+                };
+
+                var oModel = new JSONModel(oData);
+                oModel.setDefaultBindingMode("TwoWay");
+                return oModel;
+            }
     };
 
 });

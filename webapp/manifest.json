@@ -86,7 +86,14 @@
           "target": [
             "TargetAcademicProgress"
           ]
-        }
+          },
+          {
+            "name": "RouteAdvisorDashboard",
+            "pattern": "advisordashboard",
+            "target": [
+              "TargetAdvisorDashboard"
+            ]
+          }
       ],
       "targets": {
         "TargetView1": {
@@ -96,7 +103,11 @@
         "TargetAcademicProgress": {
           "id": "AcademicProgress",
           "name": "AcademicProgress"
-        }
+          },
+          "TargetAdvisorDashboard": {
+            "id": "AdvisorDashboard",
+            "name": "AdvisorDashboard"
+          }
       }
     },
     "rootView": {

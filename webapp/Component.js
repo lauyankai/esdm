@@ -22,6 +22,9 @@ sap.ui.define([
             // set the academic progress model
             this.setModel(models.createAcademicProgressModel(), "academicProgress");
 
+                // set the advisor dashboard model
+                this.setModel(models.createAdvisorDashboardModel(), "advisorDashboard");
+
             // enable routing
             this.getRouter().initialize();
         }

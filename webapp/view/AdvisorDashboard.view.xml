@@ -1,0 +1,183 @@
+<mvc:View
+    controllerName="projectesdm.controller.AdvisorDashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Page id="advisorDashboardPage" title="Academic Advisor Dashboard" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <ScrollContainer height="100%" width="100%" vertical="true">
+                <layout:VerticalLayout width="100%">
+                    
+                    <!-- Advisor Information Section -->
+                    <layout:HorizontalLayout class="sapUiMediumMargin">
+                        <VBox class="sapUiSmallMarginEnd">
+                            <Title text="Advisor: {advisorDashboard>/advisorInfo/name}" level="H2"/>
+                            <Text text="Department: {advisorDashboard>/advisorInfo/department}"/>
+                            <Text text="Total Advisees: {advisorDashboard>/advisorInfo/totalAdvisees}"/>
+                        </VBox>
+                    </layout:HorizontalLayout>
+
+                    <!-- Summary KPI Tiles -->
+                    <layout:HorizontalLayout class="sapUiMediumMargin">
+                        
+                        <!-- Total Advisees Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Total Advisees" subheader="Under Your Guidance">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{advisorDashboard>/summary/totalAdvisees}" 
+                                    icon="sap-icon://group"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- At Risk Students Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="At Risk" subheader="Need Attention" press=".onFilterAtRisk">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{advisorDashboard>/summary/atRiskCount}" 
+                                    valueColor="Error" 
+                                    icon="sap-icon://warning"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Good Standing Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Good Standing" subheader="On Track">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{advisorDashboard>/summary/goodStandingCount}" 
+                                    valueColor="Good" 
+                                    icon="sap-icon://accept"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Average GPA Tile -->
+                        <GenericTile header="Average GPA" subheader="All Advisees">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{advisorDashboard>/summary/averageGPA}" 
+                                    valueColor="Good" 
+                                    icon="sap-icon://learning-assistant"/>
+                            </TileContent>
+                        </GenericTile>
+
+                    </layout:HorizontalLayout>
+
+                    <!-- Search and Filter Bar -->
+                    <Panel headerText="Search and Filter" class="sapUiMediumMargin" width="95%" expandable="true" expanded="true">
+                        <Toolbar>
+                            <SearchField 
+                                id="studentSearch" 
+                                search=".onSearch" 
+                                width="300px" 
+                                placeholder="Search by name or student ID"/>
+                            <ToolbarSpacer/>
+                            <Label text="Filter by Status:" class="sapUiSmallMarginEnd"/>
+                            <Select 
+                                id="statusFilter" 
+                                change=".onFilterChange" 
+                                selectedKey="All">
+                                <items>
+                                    <core:Item key="All" text="All Students"/>
+                                    <core:Item key="Good Standing" text="Good Standing"/>
+                                    <core:Item key="At Risk" text="At Risk"/>
+                                    <core:Item key="Academic Probation" text="Academic Probation"/>
+                                    <core:Item key="Dean's List" text="Dean's List"/>
+                                </items>
+                            </Select>
+                        </Toolbar>
+                    </Panel>
+
+                    <!-- Advisees List Table -->
+                    <Panel headerText="My Advisees" class="sapUiMediumMargin" width="95%">
+                        <Table 
+                            id="adviseesTable" 
+                            items="{advisorDashboard>/advisees}" 
+                            growing="true" 
+                            growingThreshold="20"
+                            mode="SingleSelectMaster"
+                            selectionChange=".onStudentSelect">
+                            <columns>
+                                <Column width="3em">
+                                    <Text text=""/>
+                                </Column>
+                                <Column width="12%">
+                                    <Text text="Student ID"/>
+                                </Column>
+                                <Column width="20%">
+                                    <Text text="Name"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Major"/>
+                                </Column>
+                                <Column width="8%">
+                                    <Text text="Year"/>
+                                </Column>
+                                <Column width="8%">
+                                    <Text text="GPA"/>
+                                </Column>
+                                <Column width="10%">
+                                    <Text text="Credits"/>
+                                </Column>
+                                <Column width="12%">
+                                    <Text text="Status"/>
+                                </Column>
+                                <Column width="12%">
+                                    <Text text="Last Contact"/>
+                                </Column>
+                                <Column width="10%">
+                                    <Text text=""/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active" press=".onStudentPress">
+                                    <cells>
+                                        <!-- Risk Indicator Icon -->
+                                        <core:Icon 
+                                            src="{= ${advisorDashboard>isAtRisk} ? 'sap-icon://alert' : 'sap-icon://sys-enter-2' }" 
+                                            color="{= ${advisorDashboard>isAtRisk} ? '#BB0000' : '#2B7D2B' }"
+                                            tooltip="{= ${advisorDashboard>isAtRisk} ? 'At Risk' : 'On Track' }"/>
+                                        
+                                        <Text text="{advisorDashboard>studentId}"/>
+                                        <Text text="{advisorDashboard>name}"/>
+                                        <Text text="{advisorDashboard>major}"/>
+                                        <Text text="{advisorDashboard>academicYear}"/>
+                                        <ObjectNumber 
+                                            number="{advisorDashboard>currentGPA}" 
+                                            state="{advisorDashboard>gpaState}"/>
+                                        <Text text="{advisorDashboard>creditsCompleted}/{advisorDashboard>creditsRequired}"/>
+                                        <ObjectStatus 
+                                            text="{advisorDashboard>academicStanding}" 
+                                            state="{advisorDashboard>standingState}"/>
+                                        <Text text="{advisorDashboard>lastContact}"/>
+                                        <Button 
+                                            text="View Details" 
+                                            type="Transparent" 
+                                            press=".onViewStudentDetails"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+
+                    <!-- Recent Alerts Section -->
+                    <Panel headerText="Recent Alerts and Notifications" class="sapUiMediumMargin" width="95%">
+                        <List items="{advisorDashboard>/recentAlerts}">
+                            <StandardListItem
+                                title="{advisorDashboard>title}"
+                                description="{advisorDashboard>description}"
+                                icon="{advisorDashboard>icon}"
+                                iconInset="false"
+                                type="Active"
+                                press=".onAlertPress"
+                                info="{advisorDashboard>date}"
+                                infoState="{advisorDashboard>severity}"/>
+                        </List>
+                    </Panel>
+
+                </layout:VerticalLayout>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>
