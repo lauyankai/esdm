@@ -60,8 +60,126 @@ sap.ui.define([
         },
 
         onAddAdvisor() {
-            // Open dialog to add new advisor
-            MessageBox.information("This would open a form to add a new academic advisor to the system.");
+            // Open dialog to add new advisor from lecturer list
+            if (!this.oAddAdvisorDialog) {
+                console.log("Loading add advisor dialog fragment...");
+                Fragment.load({
+                    id: this.getView().getId(),
+                    name: "projectesdm.view.AddAdvisorDialog",
+                    controller: this
+                }).then((oDialog) => {
+                    console.log("Add advisor dialog loaded successfully");
+                    this.oAddAdvisorDialog = oDialog;
+                    const oModel = this.getView().getModel("adminDashboard");
+                    oDialog.setModel(oModel, "adminDashboard");
+                    this.getView().addDependent(oDialog);
+                    this._openAddAdvisorDialog();
+                }).catch((oError) => {
+                    console.error("Failed to load add advisor dialog:", oError);
+                    MessageBox.error("Failed to load dialog: " + oError);
+                });
+            } else {
+                this._openAddAdvisorDialog();
+            }
+        },
+
+        _openAddAdvisorDialog() {
+            this.oAddAdvisorDialog.open();
+        },
+
+        onLecturerChange(oEvent) {
+            // Update the details when lecturer is selected from dropdown
+            const sViewId = this.getView().getId();
+            const oSelect = oEvent.getSource();
+            const sSelectedKey = oSelect.getSelectedKey();
+            const oModel = this.getView().getModel("adminDashboard");
+            const aLecturers = oModel.getProperty("/availableLecturers");
+            const oSelectedLecturer = aLecturers.find(l => l.lecturerId === sSelectedKey);
+
+            if (oSelectedLecturer) {
+                Fragment.byId(sViewId, "selectedDepartment").setText(oSelectedLecturer.department);
+                Fragment.byId(sViewId, "selectedSpecialization").setText(oSelectedLecturer.specialization);
+                Fragment.byId(sViewId, "selectedEmail").setText(oSelectedLecturer.email);
+                Fragment.byId(sViewId, "selectedPhone").setText(oSelectedLecturer.phone);
+            }
+        },
+
+        onLecturerTableSelect(oEvent) {
+            // When a lecturer is selected from the table, update the dropdown
+            const sViewId = this.getView().getId();
+            const oItem = oEvent.getParameter("listItem");
+            const oContext = oItem.getBindingContext("adminDashboard");
+            const oLecturer = oContext.getObject();
+            
+            const oSelect = Fragment.byId(sViewId, "lecturerSelect");
+            if (oSelect && oLecturer) {
+                oSelect.setSelectedKey(oLecturer.lecturerId);
+                // Trigger the change event manually
+                Fragment.byId(sViewId, "selectedDepartment").setText(oLecturer.department);
+                Fragment.byId(sViewId, "selectedSpecialization").setText(oLecturer.specialization);
+                Fragment.byId(sViewId, "selectedEmail").setText(oLecturer.email);
+                Fragment.byId(sViewId, "selectedPhone").setText(oLecturer.phone);
+            }
+        },
+
+        onConfirmAddAdvisor() {
+            const sViewId = this.getView().getId();
+            const oSelect = Fragment.byId(sViewId, "lecturerSelect");
+            const sSelectedKey = oSelect.getSelectedKey();
+
+            if (!sSelectedKey) {
+                MessageBox.warning("Please select a lecturer to add as advisor.");
+                return;
+            }
+
+            const oModel = this.getView().getModel("adminDashboard");
+            const aLecturers = oModel.getProperty("/availableLecturers");
+            const aAdvisors = oModel.getProperty("/advisors");
+            const oSelectedLecturer = aLecturers.find(l => l.lecturerId === sSelectedKey);
+
+            // Check if already an advisor
+            const bAlreadyAdvisor = aAdvisors.some(a => a.advisorId === sSelectedKey);
+            if (bAlreadyAdvisor) {
+                MessageBox.warning(`${oSelectedLecturer.name} is already registered as an advisor.`);
+                return;
+            }
+
+            // Create new advisor entry
+            const oNewAdvisor = {
+                advisorId: oSelectedLecturer.lecturerId,
+                name: oSelectedLecturer.name,
+                department: oSelectedLecturer.department,
+                adviseeCount: 0,
+                atRiskCount: 0,
+                riskState: "Success",
+                activeSince: new Date().getFullYear().toString(),
+                status: "Active",
+                statusState: "Success"
+            };
+
+            // Add to advisors list
+            aAdvisors.push(oNewAdvisor);
+            oModel.setProperty("/advisors", aAdvisors);
+
+            // Update lecturer status
+            const iLecturerIndex = aLecturers.findIndex(l => l.lecturerId === sSelectedKey);
+            if (iLecturerIndex >= 0) {
+                aLecturers[iLecturerIndex].isAdvisor = "Already Advisor";
+            }
+
+            // Update system stats
+            const oSystemStats = oModel.getProperty("/systemStats");
+            oSystemStats.totalAdvisors = (parseInt(oSystemStats.totalAdvisors) || 0) + 1;
+            oModel.setProperty("/systemStats", oSystemStats);
+
+            oModel.refresh(true);
+
+            MessageToast.show(`${oSelectedLecturer.name} has been added as an academic advisor.`);
+            this.oAddAdvisorDialog.close();
+        },
+
+        onCloseAddAdvisorDialog() {
+            this.oAddAdvisorDialog.close();
         },
 
         onExportAdvisors() {
