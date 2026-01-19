@@ -28,7 +28,7 @@
 
                 <!-- Students List for Selection -->
                 <Label text="Select Students to Allocate" class="sapUiMediumMarginTop"/>
-                <Table id="studentSelectionTable" items="{path: 'adminDashboard>/allStudents', filters: [{path: 'status', operator: 'EQ', value1: 'all'}]}" selectionMode="MultiToggle" class="sapUiSmallMargin">
+                <Table id="studentSelectionTable" items="{adminDashboard>/allStudents}" selectionMode="MultiToggle" class="sapUiSmallMargin">
                     <columns>
                         <Column width="25%">
                             <Text text="Student ID"/>
