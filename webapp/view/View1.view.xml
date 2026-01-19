@@ -4,7 +4,6 @@
     <Page id="page" title="{i18n>title}">
         <content>
             <VBox class="sapUiMediumMargin">
-                <Title text="Academic Advising &amp; Early Warning System" level="H1" class="sapUiMediumMarginBottom"/>
                 <Text text="Welcome to the Academic Advising System. Select a module below:" class="sapUiSmallMarginBottom"/>
                 
                     <Title text="Student View" level="H3" class="sapUiMediumMarginTop"/>
