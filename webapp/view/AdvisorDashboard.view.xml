@@ -163,8 +163,8 @@
                     </Panel>
 
                     <!-- Birthdays and Recent Alerts side by side -->
-                    <layout:HorizontalLayout width="95%" class="sapUiSmallMargin">
-                        <Panel headerText="Advisee Birthdays" width="48%" class="sapUiSmallMarginEnd">
+                    <FlexBox direction="Row" width="100%" justifyContent="SpaceBetween" class="sapUiSmallMargin">
+                        <Panel headerText="Advisee Birthdays" width="49%" class="sapUiTinyMarginEnd">
                             <layout:HorizontalLayout width="100%" allowContentWrap="true" class="sapUiTinyMargin">
                                 <unified:Calendar
                                     id="birthdayCalendar"
@@ -196,7 +196,7 @@
                             </layout:HorizontalLayout>
                         </Panel>
 
-                        <Panel headerText="Recent Alerts and Notifications" width="48%" class="sapUiSmallMarginBegin">
+                        <Panel headerText="Recent Alerts and Notifications" width="49%" class="sapUiTinyMarginBegin">
                             <List items="{advisorDashboard>/recentAlerts}">
                                 <StandardListItem
                                     title="{advisorDashboard>title}"
@@ -209,7 +209,7 @@
                                     infoState="{advisorDashboard>severity}"/>
                             </List>
                         </Panel>
-                    </layout:HorizontalLayout>
+                    </FlexBox>
 
                 </layout:VerticalLayout>
             </ScrollContainer>
