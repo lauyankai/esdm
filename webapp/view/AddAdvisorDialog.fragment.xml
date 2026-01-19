@@ -1,0 +1,70 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog id="addAdvisorDialog" title="Add Academic Advisor" type="Standard" class="sapUiResponsiveMargin">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <f:content>
+                        <Label text="Select Lecturer" required="true"/>
+                        <Select id="lecturerSelect" items="{adminDashboard>/availableLecturers}" width="100%" change=".onLecturerChange">
+                            <core:Item key="{adminDashboard>lecturerId}" text="{adminDashboard>name} - {adminDashboard>department}" />
+                        </Select>
+
+                        <Label text="Department"/>
+                        <Text id="selectedDepartment" text="-"/>
+
+                        <Label text="Specialization"/>
+                        <Text id="selectedSpecialization" text="-"/>
+
+                        <Label text="Email"/>
+                        <Text id="selectedEmail" text="-"/>
+
+                        <Label text="Phone"/>
+                        <Text id="selectedPhone" text="-"/>
+                    </f:content>
+                </f:SimpleForm>
+
+                <!-- Lecturer Details Table -->
+                <Label text="Available Lecturers" class="sapUiMediumMarginTop"/>
+                <Table id="lecturerTable" items="{adminDashboard>/availableLecturers}" mode="SingleSelectMaster" selectionChange=".onLecturerTableSelect" class="sapUiSmallMargin">
+                    <columns>
+                        <Column width="30%">
+                            <Text text="Name"/>
+                        </Column>
+                        <Column width="25%">
+                            <Text text="Department"/>
+                        </Column>
+                        <Column width="25%">
+                            <Text text="Specialization"/>
+                        </Column>
+                        <Column width="20%">
+                            <Text text="Status"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{adminDashboard>name}"/>
+                                <Text text="{adminDashboard>department}"/>
+                                <Text text="{adminDashboard>specialization}"/>
+                                <ObjectStatus 
+                                    text="{adminDashboard>isAdvisor}" 
+                                    state="{= ${adminDashboard>isAdvisor} === 'Available' ? 'Success' : 'None'}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="Add as Advisor" type="Emphasized" press=".onConfirmAddAdvisor"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press=".onCloseAddAdvisorDialog"/>
+        </endButton>
+    </Dialog>
+
+</core:FragmentDefinition>
