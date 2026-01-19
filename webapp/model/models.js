@@ -505,6 +505,7 @@ function (JSONModel, Device) {
                     ],
                     advisors: [
                         {
+                            advisorId: "ADV001",
                             name: "Dr. Assoc. Prof. Noorminshah",
                             department: "Computer Science",
                             adviseeCount: 12,
@@ -563,6 +564,152 @@ function (JSONModel, Device) {
                             activeSince: "2020",
                             status: "Active",
                             statusState: "Success"
+                        }
+                    ],
+                    allStudents: [
+                        {
+                            studentId: "A23CS0098",
+                            name: "Lau Yan Kai",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.75,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A23CS0022",
+                            name: "Joanne Ching",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.92,
+                            gpaState: "Success",
+                            academicStanding: "Dean's List",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A23CS0061",
+                            name: "Chew Chu Xian",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.88,
+                            gpaState: "Success",
+                            academicStanding: "Dean's List",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A24CS0105",
+                            name: "Ahmad bin Hassan",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 2.45,
+                            gpaState: "Warning",
+                            academicStanding: "At Risk",
+                            standingState: "Warning",
+                            isAtRisk: true,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A24CS0089",
+                            name: "Sarah Lee",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 3.55,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A24CS0134",
+                            name: "Kumar Raj",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 3.25,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A25CS0078",
+                            name: "Emily Tan",
+                            major: "Computer Science",
+                            academicYear: "Year 1",
+                            currentGPA: 2.15,
+                            gpaState: "Error",
+                            academicStanding: "Academic Probation",
+                            standingState: "Error",
+                            isAtRisk: true,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A25CS0092",
+                            name: "Michael Wong",
+                            major: "Computer Science",
+                            academicYear: "Year 1",
+                            currentGPA: 3.65,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A23CS0145",
+                            name: "Fatimah Ibrahim",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.48,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A24CS0156",
+                            name: "David Chen",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 2.85,
+                            gpaState: "Warning",
+                            academicStanding: "At Risk",
+                            standingState: "Warning",
+                            isAtRisk: true,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A23CS0167",
+                            name: "Nurul Huda",
+                            major: "Computer Science",
+                            academicYear: "Year 3",
+                            currentGPA: 3.72,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
+                        },
+                        {
+                            studentId: "A24CS0178",
+                            name: "Jason Lim",
+                            major: "Computer Science",
+                            academicYear: "Year 2",
+                            currentGPA: 3.38,
+                            gpaState: "Success",
+                            academicStanding: "Good Standing",
+                            standingState: "Success",
+                            isAtRisk: false,
+                            currentAdvisor: null
                         }
                     ],
                     systemAlerts: [
