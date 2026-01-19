@@ -717,6 +717,88 @@ function (JSONModel, Device) {
                             currentAdvisor: null
                         }
                     ],
+                    availableLecturers: [
+                        {
+                            lecturerId: "LEC001",
+                            name: "Dr. Tan Wei Ming",
+                            department: "Computer Science",
+                            specialization: "Artificial Intelligence",
+                            email: "tan.weiming@university.edu",
+                            phone: "+60 12-345 6789",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 8
+                        },
+                        {
+                            lecturerId: "LEC002",
+                            name: "Prof. Lisa Anderson",
+                            department: "Computer Science",
+                            specialization: "Software Engineering",
+                            email: "lisa.anderson@university.edu",
+                            phone: "+60 12-345 6790",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 12
+                        },
+                        {
+                            lecturerId: "LEC003",
+                            name: "Dr. Muhammad Farid",
+                            department: "Information Technology",
+                            specialization: "Network Security",
+                            email: "muhammad.farid@university.edu",
+                            phone: "+60 12-345 6791",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 6
+                        },
+                        {
+                            lecturerId: "LEC004",
+                            name: "Dr. Jane Lim",
+                            department: "Information Technology",
+                            specialization: "Web Development",
+                            email: "jane.lim@university.edu",
+                            phone: "+60 12-345 6792",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 7
+                        },
+                        {
+                            lecturerId: "LEC005",
+                            name: "Dr. Raj Kumar Patel",
+                            department: "Data Science",
+                            specialization: "Machine Learning",
+                            email: "raj.patel@university.edu",
+                            phone: "+60 12-345 6793",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 10
+                        },
+                        {
+                            lecturerId: "LEC006",
+                            name: "Dr. Nurul Aini",
+                            department: "Data Science",
+                            specialization: "Big Data Analytics",
+                            email: "nurul.aini@university.edu",
+                            phone: "+60 12-345 6794",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 5
+                        },
+                        {
+                            lecturerId: "LEC007",
+                            name: "Prof. David Wong",
+                            department: "Computer Science",
+                            specialization: "Database Systems",
+                            email: "david.wong@university.edu",
+                            phone: "+60 12-345 6795",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 15
+                        },
+                        {
+                            lecturerId: "LEC008",
+                            name: "Dr. Siti Hajar",
+                            department: "Information Technology",
+                            specialization: "Cloud Computing",
+                            email: "siti.hajar@university.edu",
+                            phone: "+60 12-345 6796",
+                            isAdvisor: "Available",
+                            yearsOfExperience: 9
+                        }
+                    ],
                     systemAlerts: [
                         {
                             title: "High At-Risk Student Count in IT Department",
