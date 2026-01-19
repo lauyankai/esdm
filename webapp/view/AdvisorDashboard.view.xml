@@ -162,51 +162,52 @@
                         </Table>
                     </Panel>
 
-                    <!-- Birthdays Calendar -->
-                    <Panel headerText="Advisee Birthdays" class="sapUiMediumMargin" width="95%">
-                        <layout:HorizontalLayout width="100%" class="sapUiSmallMargin">
-                            <unified:Calendar
-                                id="birthdayCalendar"
-                                months="1"
-                                singleSelection="false">
-                                <unified:specialDates path="advisorDashboard>/birthdays">
-                                    <unified:DateTypeRange
-                                        startDate="{advisorDashboard>date}"
-                                        type="Type01"
-                                        tooltip="{advisorDashboard>name}" />
-                                </unified:specialDates>
-                            </unified:Calendar>
+                    <!-- Birthdays and Recent Alerts side by side -->
+                    <layout:HorizontalLayout width="95%" class="sapUiMediumMargin">
+                        <Panel headerText="Advisee Birthdays" width="50%" class="sapUiSmallMarginEnd">
+                            <layout:HorizontalLayout width="100%" class="sapUiSmallMargin">
+                                <unified:Calendar
+                                    id="birthdayCalendar"
+                                    months="1"
+                                    singleSelection="false">
+                                    <unified:specialDates path="advisorDashboard>/birthdays">
+                                        <unified:DateTypeRange
+                                            startDate="{advisorDashboard>date}"
+                                            type="Type01"
+                                            tooltip="{advisorDashboard>name}" />
+                                    </unified:specialDates>
+                                </unified:Calendar>
 
-                            <List
-                                id="birthdayList"
-                                class="sapUiSmallMarginBegin"
-                                headerText="Upcoming Birthdays"
-                                items="{advisorDashboard>/birthdays}">
+                                <List
+                                    id="birthdayList"
+                                    class="sapUiSmallMarginBegin"
+                                    headerText="Upcoming Birthdays"
+                                    items="{advisorDashboard>/birthdays}">
+                                    <StandardListItem
+                                        title="{advisorDashboard>name}"
+                                        description="{advisorDashboard>studentId} · {advisorDashboard>major}"
+                                        icon="sap-icon://appointment-2"
+                                        iconInset="false"
+                                        info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
+                                        infoState="Information"/>
+                                </List>
+                            </layout:HorizontalLayout>
+                        </Panel>
+
+                        <Panel headerText="Recent Alerts and Notifications" width="50%" class="sapUiSmallMarginBegin">
+                            <List items="{advisorDashboard>/recentAlerts}">
                                 <StandardListItem
-                                    title="{advisorDashboard>name}"
-                                    description="{advisorDashboard>studentId} · {advisorDashboard>major}"
-                                    icon="sap-icon://appointment-2"
+                                    title="{advisorDashboard>title}"
+                                    description="{advisorDashboard>description}"
+                                    icon="{advisorDashboard>icon}"
                                     iconInset="false"
-                                    info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
-                                    infoState="Information"/>
+                                    type="Active"
+                                    press=".onAlertPress"
+                                    info="{advisorDashboard>date}"
+                                    infoState="{advisorDashboard>severity}"/>
                             </List>
-                        </layout:HorizontalLayout>
-                    </Panel>
-
-                    <!-- Recent Alerts Section -->
-                    <Panel headerText="Recent Alerts and Notifications" class="sapUiMediumMargin" width="95%">
-                        <List items="{advisorDashboard>/recentAlerts}">
-                            <StandardListItem
-                                title="{advisorDashboard>title}"
-                                description="{advisorDashboard>description}"
-                                icon="{advisorDashboard>icon}"
-                                iconInset="false"
-                                type="Active"
-                                press=".onAlertPress"
-                                info="{advisorDashboard>date}"
-                                infoState="{advisorDashboard>severity}"/>
-                        </List>
-                    </Panel>
+                        </Panel>
+                    </layout:HorizontalLayout>
 
                 </layout:VerticalLayout>
             </ScrollContainer>
