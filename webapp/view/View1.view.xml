@@ -40,6 +40,30 @@
                         enabled="false"
                         class="sapUiSmallMarginEnd"/>
                 </HBox>
+
+                <Title text="Admin View" level="H3" class="sapUiSmallMarginTop"/>
+                <HBox class="sapUiSmallMarginTop sapUiMediumMarginBottom">
+                    <Button 
+                        text="Administration Dashboard" 
+                        type="Emphasized" 
+                        press=".onNavigateToAdminDashboard"
+                        icon="sap-icon://manager"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <Button 
+                        text="User Management" 
+                        type="Default" 
+                        icon="sap-icon://employee"
+                        enabled="false"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <Button 
+                        text="System Settings" 
+                        type="Default" 
+                        icon="sap-icon://action-settings"
+                        enabled="false"
+                        class="sapUiSmallMarginEnd"/>
+                </HBox>
             </VBox>
         </content>
     </Page>
