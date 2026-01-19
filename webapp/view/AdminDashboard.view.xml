@@ -1,0 +1,224 @@
+<mvc:View
+    controllerName="projectesdm.controller.AdminDashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+    
+    <Page id="adminDashboardPage" title="Academic Administration Dashboard" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <ScrollContainer height="100%" width="100%" vertical="true">
+                <layout:VerticalLayout width="100%">
+                    
+                    <!-- Admin Information Section -->
+                    <layout:HorizontalLayout class="sapUiMediumMargin">
+                        <VBox class="sapUiSmallMarginEnd">
+                            <Title text="Administrator: {adminDashboard>/adminInfo/name}" level="H2"/>
+                            <Text text="Role: {adminDashboard>/adminInfo/role}"/>
+                            <Text text="Department: {adminDashboard>/adminInfo/department}"/>
+                        </VBox>
+                    </layout:HorizontalLayout>
+
+                    <!-- System Overview KPI Tiles -->
+                    <layout:HorizontalLayout class="sapUiMediumMargin">
+                        
+                        <!-- Total Students Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Total Students" subheader="Current Enrollment">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{adminDashboard>/systemStats/totalStudents}" 
+                                    icon="sap-icon://study-leave"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Total Advisors Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Academic Advisors" subheader="Active Staff">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{adminDashboard>/systemStats/totalAdvisors}" 
+                                    icon="sap-icon://employee"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- At Risk Students Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Students At Risk" subheader="Need Attention" press=".onViewAtRiskStudents">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{adminDashboard>/systemStats/atRiskStudents}" 
+                                    valueColor="Error" 
+                                    icon="sap-icon://alert"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Average System GPA Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="System Average GPA" subheader="All Students">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{adminDashboard>/systemStats/averageGPA}" 
+                                    valueColor="Good" 
+                                    icon="sap-icon://education"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Pending Actions Tile -->
+                        <GenericTile header="Pending Actions" subheader="Require Review" press=".onViewPendingActions">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{adminDashboard>/systemStats/pendingActions}" 
+                                    valueColor="Critical" 
+                                    icon="sap-icon://employee-approvals"/>
+                            </TileContent>
+                        </GenericTile>
+
+                    </layout:HorizontalLayout>
+
+                    <!-- Enrollment Trend Chart -->
+                    <Panel headerText="Student Enrollment Trends" class="sapUiMediumMargin" width="95%">
+                        <viz:VizFrame 
+                            id="enrollmentChart" 
+                            uiConfig="{applicationSet:'fiori'}" 
+                            height="400px" 
+                            width="100%" 
+                            vizType='column'>
+                            <viz:dataset>
+                                <viz.data:FlattenedDataset data="{adminDashboard>/enrollmentTrend}">
+                                    <viz.data:dimensions>
+                                        <viz.data:DimensionDefinition name="Semester" value="{semester}"/>
+                                    </viz.data:dimensions>
+                                    <viz.data:measures>
+                                        <viz.data:MeasureDefinition name="Students" value="{count}"/>
+                                    </viz.data:measures>
+                                </viz.data:FlattenedDataset>
+                            </viz:dataset>
+                            <viz:feeds>
+                                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Students"/>
+                                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Semester"/>
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </Panel>
+
+                    <!-- Department Performance Table -->
+                    <Panel headerText="Department Performance Overview" class="sapUiMediumMargin" width="95%">
+                        <Table 
+                            id="departmentTable" 
+                            items="{adminDashboard>/departments}" 
+                            growing="true" 
+                            growingThreshold="10">
+                            <columns>
+                                <Column width="25%">
+                                    <Text text="Department"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Total Students"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Average GPA"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Advisors"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="At Risk"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active" press=".onDepartmentPress">
+                                    <cells>
+                                        <Text text="{adminDashboard>name}"/>
+                                        <Text text="{adminDashboard>studentCount}"/>
+                                        <ObjectNumber 
+                                            number="{adminDashboard>averageGPA}" 
+                                            state="{adminDashboard>gpaState}"/>
+                                        <Text text="{adminDashboard>advisorCount}"/>
+                                        <ObjectNumber 
+                                            number="{adminDashboard>atRiskCount}" 
+                                            state="{adminDashboard>riskState}"/>
+                                        <ObjectStatus 
+                                            text="{adminDashboard>status}" 
+                                            state="{adminDashboard>statusState}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+
+                    <!-- Advisors Management Table -->
+                    <Panel headerText="Academic Advisors Management" class="sapUiMediumMargin" width="95%">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <Title text="Academic Advisors Management"/>
+                                <ToolbarSpacer/>
+                                <Button text="Add Advisor" icon="sap-icon://add" type="Emphasized" press=".onAddAdvisor"/>
+                                <Button text="Export" icon="sap-icon://excel-attachment" press=".onExportAdvisors"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <Table 
+                            id="advisorsTable" 
+                            items="{adminDashboard>/advisors}" 
+                            growing="true" 
+                            growingThreshold="15">
+                            <columns>
+                                <Column width="20%">
+                                    <Text text="Name"/>
+                                </Column>
+                                <Column width="20%">
+                                    <Text text="Department"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Advisees"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="At Risk Students"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Active Since"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active" press=".onAdvisorPress">
+                                    <cells>
+                                        <Text text="{adminDashboard>name}"/>
+                                        <Text text="{adminDashboard>department}"/>
+                                        <Text text="{adminDashboard>adviseeCount}"/>
+                                        <ObjectNumber 
+                                            number="{adminDashboard>atRiskCount}" 
+                                            state="{adminDashboard>riskState}"/>
+                                        <Text text="{adminDashboard>activeSince}"/>
+                                        <ObjectStatus 
+                                            text="{adminDashboard>status}" 
+                                            state="{adminDashboard>statusState}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+
+                    <!-- System Alerts -->
+                    <Panel headerText="System Alerts and Notifications" class="sapUiMediumMargin" width="95%">
+                        <List items="{adminDashboard>/systemAlerts}">
+                            <StandardListItem
+                                title="{adminDashboard>title}"
+                                description="{adminDashboard>description}"
+                                icon="{adminDashboard>icon}"
+                                iconInset="false"
+                                type="Active"
+                                press=".onSystemAlertPress"
+                                info="{adminDashboard>date}"
+                                infoState="{adminDashboard>severity}"/>
+                        </List>
+                    </Panel>
+
+                </layout:VerticalLayout>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>
