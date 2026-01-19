@@ -83,8 +83,8 @@
                             height="400px" 
                             width="100%" 
                             vizType='column'
-                            title=""
-                            showTitle="false">
+                            showTitle="false"
+                            isToolbarVisible="false">
                             <viz:dataset>
                                 <viz.data:FlattenedDataset data="{adminDashboard>/enrollmentTrend}">
                                     <viz.data:dimensions>

@@ -74,8 +74,8 @@
                             height="400px" 
                             width="100%" 
                             vizType='line'
-                            title=""
-                            showTitle="false">
+                            showTitle="false"
+                            isToolbarVisible="false">
                             <viz:dataset>
                                 <viz.data:FlattenedDataset data="{academicProgress>/gpaTrend}">
                                     <viz.data:dimensions>
