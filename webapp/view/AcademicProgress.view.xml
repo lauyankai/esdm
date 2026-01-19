@@ -73,14 +73,8 @@
                             uiConfig="{applicationSet:'fiori'}" 
                             height="400px" 
                             width="100%" 
-                            vizType='line'>
-                            <viz:vizProperties>
-                                <viz:general>
-                                    <viz:title>
-                                        <viz:visible>false</viz:visible>
-                                    </viz:title>
-                                </viz:general>
-                            </viz:vizProperties>
+                            vizType='line'
+                            showTitle="false">
                             <viz:dataset>
                                 <viz.data:FlattenedDataset data="{academicProgress>/gpaTrend}">
                                     <viz.data:dimensions>
