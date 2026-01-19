@@ -181,6 +181,19 @@ sap.ui.define([
             }
         },
 
+        onStudentSelectionChange(oEvent) {
+            // Update the selection count
+            const sViewId = this.getView().getId();
+            const oTable = Fragment.byId(sViewId, "studentSelectionTable");
+            const oSummaryText = Fragment.byId(sViewId, "summaryText");
+            
+            if (oTable && oSummaryText) {
+                const aSelectedItems = oTable.getSelectedItems();
+                const iCount = aSelectedItems ? aSelectedItems.length : 0;
+                oSummaryText.setText(`${iCount} student${iCount !== 1 ? 's' : ''} selected`);
+            }
+        },
+
         onAllocateStudents() {
             // Get selected students and advisor using Fragment.byId
             const sViewId = this.getView().getId();
