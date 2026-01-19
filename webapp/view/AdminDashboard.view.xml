@@ -149,6 +149,11 @@
                         </Table>
                     </Panel>
 
+                    <!-- Student-to-Advisor Allocation Section -->
+                    <Panel headerText="Student-to-Advisor Allocation" class="sapUiMediumMargin" width="95%">
+                        <Button text="Allocate Students to Advisors" icon="sap-icon://chain-link" type="Emphasized" press=".onOpenAllocationDialog" class="sapUiSmallMargin"/>
+                    </Panel>
+
                     <!-- Advisors Management Table -->
                     <Panel headerText="Academic Advisors Management" class="sapUiMediumMargin" width="95%">
                         <headerToolbar>

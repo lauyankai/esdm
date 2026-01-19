@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog id="allocationDialog" title="Allocate Students to Advisor" type="Standard" class="sapUiResponsiveMargin">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <!-- Advisor Selection -->
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <f:content>
+                        <Label text="Select Academic Advisor" required="true"/>
+                        <Select id="advisorSelect" items="{adminDashboard>/advisors}" width="100%">
+                            <core:Item key="{adminDashboard>advisorId}" text="{adminDashboard>name} ({adminDashboard>department})" />
+                        </Select>
+
+                        <Label text="Student Status Filter" class="sapUiMediumMarginTop"/>
+                        <SegmentedButton id="statusFilter" selectionChange=".onStatusFilterChange">
+                            <items>
+                                <SegmentedButtonItem key="all" text="All Students" pressed="true"/>
+                                <SegmentedButtonItem key="unassigned" text="Unassigned"/>
+                                <SegmentedButtonItem key="atrisk" text="At Risk"/>
+                            </items>
+                        </SegmentedButton>
+                    </f:content>
+                </f:SimpleForm>
+
+                <!-- Students List for Selection -->
+                <Label text="Select Students to Allocate" class="sapUiMediumMarginTop"/>
+                <Table id="studentSelectionTable" items="{path: 'adminDashboard>/allStudents', filters: [{path: 'status', operator: 'EQ', value1: 'all'}]}" selectionMode="MultiToggle" class="sapUiSmallMargin">
+                    <columns>
+                        <Column width="25%">
+                            <Text text="Student ID"/>
+                        </Column>
+                        <Column width="25%">
+                            <Text text="Name"/>
+                        </Column>
+                        <Column width="20%">
+                            <Text text="Major"/>
+                        </Column>
+                        <Column width="15%">
+                            <Text text="Current GPA"/>
+                        </Column>
+                        <Column width="15%">
+                            <Text text="Status"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{adminDashboard>studentId}"/>
+                                <Text text="{adminDashboard>name}"/>
+                                <Text text="{adminDashboard>major}"/>
+                                <ObjectNumber 
+                                    number="{adminDashboard>currentGPA}" 
+                                    state="{adminDashboard>gpaState}"/>
+                                <ObjectStatus 
+                                    text="{adminDashboard>academicStanding}" 
+                                    state="{adminDashboard>standingState}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+                <!-- Summary Text -->
+                <Text id="summaryText" class="sapUiSmallMargin sapUiMediumMarginTop" text="0 students selected"/>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="Allocate" type="Emphasized" press=".onAllocateStudents"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press=".onCloseAllocationDialog"/>
+        </endButton>
+    </Dialog>
+
+</core:FragmentDefinition>
