@@ -19,6 +19,9 @@ sap.ui.define([
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
+            // set the academic progress model
+            this.setModel(models.createAcademicProgressModel(), "academicProgress");
+
             // enable routing
             this.getRouter().initialize();
         }

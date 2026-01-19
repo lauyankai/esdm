@@ -79,12 +79,23 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "RouteAcademicProgress",
+          "pattern": "academicprogress",
+          "target": [
+            "TargetAcademicProgress"
+          ]
         }
       ],
       "targets": {
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+        },
+        "TargetAcademicProgress": {
+          "id": "AcademicProgress",
+          "name": "AcademicProgress"
         }
       }
     },

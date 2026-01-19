@@ -2,5 +2,34 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Title text="Academic Advising &amp; Early Warning System" level="H1" class="sapUiMediumMarginBottom"/>
+                <Text text="Welcome to the Academic Advising System. Select a module below:" class="sapUiSmallMarginBottom"/>
+                
+                <HBox class="sapUiMediumMarginTop">
+                    <Button 
+                        text="Academic Progress Dashboard" 
+                        type="Emphasized" 
+                        press=".onNavigateToAcademicProgress"
+                        icon="sap-icon://learning-assistant"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <Button 
+                        text="Advising Notes" 
+                        type="Default" 
+                        icon="sap-icon://notes"
+                        enabled="false"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <Button 
+                        text="Early Warning Alerts" 
+                        type="Default" 
+                        icon="sap-icon://warning"
+                        enabled="false"
+                        class="sapUiSmallMarginEnd"/>
+                </HBox>
+            </VBox>
+        </content>
     </Page>
 </mvc:View>

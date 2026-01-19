@@ -1,0 +1,194 @@
+<mvc:View
+    controllerName="projectesdm.controller.AcademicProgress"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+    
+    <Page id="academicProgressPage" title="Academic Progress Dashboard" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <ScrollContainer height="100%" width="100%" vertical="true">
+                <layout:VerticalLayout width="100%">
+                    
+                    <!-- Header Section with Student Info -->
+                    <layout:HorizontalLayout class="sapUiMediumMargin">
+                        <VBox class="sapUiSmallMarginEnd">
+                            <Title text="Student: {academicProgress>/studentInfo/name}" level="H2"/>
+                            <Text text="Student ID: {academicProgress>/studentInfo/studentId}"/>
+                            <Text text="Major: {academicProgress>/studentInfo/major}"/>
+                            <Text text="Academic Year: {academicProgress>/studentInfo/academicYear}"/>
+                        </VBox>
+                    </layout:HorizontalLayout>
+
+                    <!-- KPI Tiles Section -->
+                    <layout:HorizontalLayout class="sapUiMediumMargin">
+                        
+                        <!-- Current GPA Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Current GPA" subheader="Overall Performance" press=".onTilePress">
+                            <TileContent>
+                                <NumericContent value="{academicProgress>/kpis/currentGPA}" scale="" valueColor="Good" icon="sap-icon://learning-assistant"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Credits Completed Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Credits Completed" subheader="Out of Required" press=".onTilePress">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{academicProgress>/kpis/creditsCompleted}" 
+                                    scale="/ {academicProgress>/kpis/creditsRequired}" 
+                                    valueColor="Good" 
+                                    icon="sap-icon://course-book"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Courses in Progress Tile -->
+                        <GenericTile class="sapUiTinyMarginEnd" header="Current Courses" subheader="This Semester" press=".onTilePress">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{academicProgress>/kpis/currentCourses}" 
+                                    valueColor="Neutral" 
+                                    icon="sap-icon://course-program"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Academic Standing Tile -->
+                        <GenericTile header="Academic Standing" subheader="Current Status" press=".onTilePress">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{academicProgress>/kpis/academicStanding}" 
+                                    valueColor="{academicProgress>/kpis/standingColor}" 
+                                    icon="sap-icon://badge"/>
+                            </TileContent>
+                        </GenericTile>
+
+                    </layout:HorizontalLayout>
+
+                    <!-- GPA Trend Chart -->
+                    <Panel headerText="GPA Trend Analysis" class="sapUiMediumMargin" width="95%">
+                        <viz:VizFrame 
+                            id="gpaChart" 
+                            uiConfig="{applicationSet:'fiori'}" 
+                            height="400px" 
+                            width="100%" 
+                            vizType='line'>
+                            <viz:dataset>
+                                <viz.data:FlattenedDataset data="{academicProgress>/gpaTrend}">
+                                    <viz.data:dimensions>
+                                        <viz.data:DimensionDefinition name="Semester" value="{semester}"/>
+                                    </viz.data:dimensions>
+                                    <viz.data:measures>
+                                        <viz.data:MeasureDefinition name="GPA" value="{gpa}"/>
+                                    </viz.data:measures>
+                                </viz.data:FlattenedDataset>
+                            </viz:dataset>
+                            <viz:feeds>
+                                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="GPA"/>
+                                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Semester"/>
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </Panel>
+
+                    <!-- Course Progress Table -->
+                    <Panel headerText="Current Semester Courses" class="sapUiMediumMargin" width="95%">
+                        <Table 
+                            id="coursesTable" 
+                            items="{academicProgress>/currentCourses}" 
+                            growing="true" 
+                            growingThreshold="10">
+                            <columns>
+                                <Column width="15%">
+                                    <Text text="Course Code"/>
+                                </Column>
+                                <Column width="30%">
+                                    <Text text="Course Name"/>
+                                </Column>
+                                <Column width="10%">
+                                    <Text text="Credits"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Current Grade"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Attendance"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{academicProgress>courseCode}"/>
+                                        <Text text="{academicProgress>courseName}"/>
+                                        <Text text="{academicProgress>credits}"/>
+                                        <ObjectStatus 
+                                            text="{academicProgress>currentGrade}" 
+                                            state="{academicProgress>gradeState}"/>
+                                        <ProgressIndicator 
+                                            percentValue="{academicProgress>attendance}" 
+                                            displayValue="{academicProgress>attendance}%" 
+                                            state="{academicProgress>attendanceState}"/>
+                                        <ObjectStatus 
+                                            text="{academicProgress>status}" 
+                                            state="{academicProgress>statusState}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+
+                    <!-- Semester History -->
+                    <Panel headerText="Semester History" class="sapUiMediumMargin" width="95%">
+                        <Table 
+                            id="semesterHistoryTable" 
+                            items="{academicProgress>/semesterHistory}">
+                            <columns>
+                                <Column width="20%">
+                                    <Text text="Semester"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="GPA"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Credits"/>
+                                </Column>
+                                <Column width="20%">
+                                    <Text text="Courses Taken"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Standing"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text=""/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{academicProgress>semester}"/>
+                                        <ObjectNumber 
+                                            number="{academicProgress>gpa}" 
+                                            state="{academicProgress>gpaState}"/>
+                                        <Text text="{academicProgress>credits}"/>
+                                        <Text text="{academicProgress>courseCount}"/>
+                                        <ObjectStatus 
+                                            text="{academicProgress>standing}" 
+                                            state="{academicProgress>standingState}"/>
+                                        <Button 
+                                            text="View Details" 
+                                            type="Transparent" 
+                                            press=".onViewSemesterDetails"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+
+                </layout:VerticalLayout>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

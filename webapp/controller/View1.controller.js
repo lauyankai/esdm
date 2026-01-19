@@ -5,6 +5,11 @@ sap.ui.define([
 
     return Controller.extend("projectesdm.controller.View1", {
         onInit() {
+        },
+
+        onNavigateToAcademicProgress() {
+            const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteAcademicProgress");
         }
     });
 });
