@@ -10,6 +10,9 @@ sap.ui.define([
         onInit() {
             // Initialize the model immediately (don't wait for route match)
             this._initializeModel();
+            
+            // Remove chart titles
+            this._removeChartTitles();
         },
 
         _initializeModel() {
@@ -21,6 +24,17 @@ sap.ui.define([
             } else {
                 MessageToast.show("Academic Progress Dashboard loaded successfully");
             }
+        },
+
+        _removeChartTitles() {
+            // Delay to ensure the view is fully rendered
+            setTimeout(() => {
+                const oGPAChart = this.byId("gpaChart");
+                if (oGPAChart) {
+                    oGPAChart.setTitle("");
+                    oGPAChart.setShowTitle(false);
+                }
+            }, 500);
         },
 
         onNavBack() {

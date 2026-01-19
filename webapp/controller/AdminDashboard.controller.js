@@ -11,6 +11,9 @@ sap.ui.define([
         onInit() {
             // Initialize the model
             this._initializeModel();
+            
+            // Remove chart titles
+            this._removeChartTitles();
         },
 
         _initializeModel() {
@@ -20,6 +23,17 @@ sap.ui.define([
             if (!oModel) {
                 MessageToast.show("Unable to load admin dashboard data");
             }
+        },
+
+        _removeChartTitles() {
+            // Delay to ensure the view is fully rendered
+            setTimeout(() => {
+                const oEnrollmentChart = this.byId("enrollmentChart");
+                if (oEnrollmentChart) {
+                    oEnrollmentChart.setTitle("");
+                    oEnrollmentChart.setShowTitle(false);
+                }
+            }, 500);
         },
 
         onNavBack() {
