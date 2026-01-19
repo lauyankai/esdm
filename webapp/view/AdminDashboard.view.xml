@@ -76,7 +76,7 @@
                     </layout:HorizontalLayout>
 
                     <!-- Enrollment Trend Chart -->
-                    <Panel headerText="Student Enrollment Trends" class="sapUiMediumMargin" width="95%">
+                    <Panel class="sapUiMediumMargin" width="95%">
                         <viz:VizFrame 
                             id="enrollmentChart" 
                             uiConfig="{applicationSet:'fiori'}" 

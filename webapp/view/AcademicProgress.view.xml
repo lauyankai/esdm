@@ -67,7 +67,7 @@
                     </layout:HorizontalLayout>
 
                     <!-- GPA Trend Chart -->
-                    <Panel headerText="GPA Trend Analysis" class="sapUiMediumMargin" width="95%">
+                    <Panel class="sapUiMediumMargin" width="95%">
                         <viz:VizFrame 
                             id="gpaChart" 
                             uiConfig="{applicationSet:'fiori'}" 
