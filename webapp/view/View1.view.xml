@@ -7,13 +7,24 @@
                 <Title text="Academic Advising &amp; Early Warning System" level="H1" class="sapUiMediumMarginBottom"/>
                 <Text text="Welcome to the Academic Advising System. Select a module below:" class="sapUiSmallMarginBottom"/>
                 
-                <HBox class="sapUiMediumMarginTop">
+                    <Title text="Student View" level="H3" class="sapUiMediumMarginTop"/>
+                    <HBox class="sapUiSmallMarginTop sapUiMediumMarginBottom">
                     <Button 
                         text="Academic Progress Dashboard" 
                         type="Emphasized" 
                         press=".onNavigateToAcademicProgress"
                         icon="sap-icon://learning-assistant"
                         class="sapUiSmallMarginEnd"/>
+                    </HBox>
+                
+                    <Title text="Advisor View" level="H3" class="sapUiSmallMarginTop"/>
+                    <HBox class="sapUiSmallMarginTop sapUiMediumMarginBottom">
+                        <Button 
+                            text="Advisor Dashboard" 
+                            type="Emphasized" 
+                            press=".onNavigateToAdvisorDashboard"
+                            icon="sap-icon://group"
+                            class="sapUiSmallMarginEnd"/>
                     
                     <Button 
                         text="Advising Notes" 

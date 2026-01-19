@@ -19,6 +19,17 @@ sap.ui.define([
                 MessageToast.show("Navigation error: " + error.message);
                 console.error("Navigation error:", error);
             }
-        }
+            },
+
+            onNavigateToAdvisorDashboard() {
+                try {
+                    const oRouter = this.getOwnerComponent().getRouter();
+                    console.log("Navigating to Advisor Dashboard");
+                    oRouter.navTo("RouteAdvisorDashboard");
+                } catch (error) {
+                    MessageToast.show("Navigation error: " + error.message);
+                    console.error("Navigation error:", error);
+                }
+            }
     });
 });
