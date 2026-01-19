@@ -185,7 +185,6 @@ sap.ui.define([
             // Get selected students and advisor using Fragment.byId
             const sViewId = this.getView().getId();
             const oTable = Fragment.byId(sViewId, "studentSelectionTable");
-            const aSelectedIndices = oTable.getSelectedIndices();
             const oAdvisorSelect = Fragment.byId(sViewId, "advisorSelect");
             const sSelectedAdvisorId = oAdvisorSelect.getSelectedKey();
 
@@ -194,7 +193,10 @@ sap.ui.define([
                 return;
             }
 
-            if (aSelectedIndices.length === 0) {
+            // Get selected items (for MultiToggle mode, use getSelectedItems instead of getSelectedIndices)
+            const aSelectedItems = oTable.getSelectedItems();
+            
+            if (!aSelectedItems || aSelectedItems.length === 0) {
                 MessageBox.warning("Please select at least one student to allocate.");
                 return;
             }
@@ -204,9 +206,10 @@ sap.ui.define([
             const aAdvisors = oModel.getProperty("/advisors");
             const oSelectedAdvisor = aAdvisors.find(a => a.advisorId === sSelectedAdvisorId);
 
-            // Get selected students
-            const aAllStudents = oModel.getProperty("/allStudents");
-            const aSelectedStudents = aSelectedIndices.map(i => aAllStudents[i]);
+            // Get selected students from the binding context
+            const aSelectedStudents = aSelectedItems.map(oItem => {
+                return oItem.getBindingContext("adminDashboard").getObject();
+            });
 
             // Show confirmation
             MessageBox.confirm(
