@@ -111,14 +111,15 @@ sap.ui.define([
                 oModel.setProperty("/allStudents", allStudents);
             }
 
-            // Reset selections
-            const oTable = this.byId("studentSelectionTable");
+            // Reset selections using Fragment.byId
+            const sViewId = this.getView().getId();
+            const oTable = Fragment.byId(sViewId, "studentSelectionTable");
             if (oTable) {
                 oTable.clearSelection();
             }
             
             // Reset advisor selection
-            const oAdvisorSelect = this.byId("advisorSelect");
+            const oAdvisorSelect = Fragment.byId(sViewId, "advisorSelect");
             if (oAdvisorSelect) {
                 oAdvisorSelect.setSelectedKey("");
             }
@@ -148,10 +149,11 @@ sap.ui.define([
         },
 
         onAllocateStudents() {
-            // Get selected students and advisor
-            const oTable = this.byId("studentSelectionTable");
+            // Get selected students and advisor using Fragment.byId
+            const sViewId = this.getView().getId();
+            const oTable = Fragment.byId(sViewId, "studentSelectionTable");
             const aSelectedIndices = oTable.getSelectedIndices();
-            const oAdvisorSelect = this.byId("advisorSelect");
+            const oAdvisorSelect = Fragment.byId(sViewId, "advisorSelect");
             const sSelectedAdvisorId = oAdvisorSelect.getSelectedKey();
 
             if (!sSelectedAdvisorId) {
