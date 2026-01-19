@@ -24,7 +24,8 @@ sap.ui.define([
 
                 // set the advisor dashboard model
                 this.setModel(models.createAdvisorDashboardModel(), "advisorDashboard");
-
+            // set the admin dashboard model
+            this.setModel(models.createAdminDashboardModel(), "adminDashboard");
             // enable routing
             this.getRouter().initialize();
         }
