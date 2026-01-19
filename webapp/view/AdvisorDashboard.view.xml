@@ -54,12 +54,22 @@
                         </GenericTile>
 
                         <!-- Average GPA Tile -->
-                        <GenericTile header="Average GPA" subheader="All Advisees">
+                        <GenericTile class="sapUiTinyMarginEnd" header="Average GPA" subheader="All Advisees">
                             <TileContent>
                                 <NumericContent 
                                     value="{advisorDashboard>/summary/averageGPA}" 
                                     valueColor="Good" 
                                     icon="sap-icon://learning-assistant"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Upcoming Advising Sessions Tile -->
+                        <GenericTile header="Upcoming Sessions" subheader="This Week">
+                            <TileContent>
+                                <NumericContent 
+                                    value="{advisorDashboard>/summary/upcomingSessions}" 
+                                    valueColor="Neutral" 
+                                    icon="sap-icon://calendar"/>
                             </TileContent>
                         </GenericTile>
 

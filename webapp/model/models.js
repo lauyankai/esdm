@@ -192,7 +192,8 @@ function (JSONModel, Device) {
                         totalAdvisees: 12,
                         atRiskCount: 3,
                         goodStandingCount: 8,
-                        averageGPA: "3.42"
+                        averageGPA: "3.42",
+                        upcomingSessions: 7
                     },
                     birthdays: [
                         {
