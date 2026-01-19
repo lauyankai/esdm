@@ -163,11 +163,12 @@
                     </Panel>
 
                     <!-- Birthdays and Recent Alerts side by side -->
-                    <layout:HorizontalLayout width="95%" class="sapUiMediumMargin">
-                        <Panel headerText="Advisee Birthdays" width="50%" class="sapUiSmallMarginEnd">
-                            <layout:HorizontalLayout width="100%" class="sapUiSmallMargin">
+                    <layout:HorizontalLayout width="95%" class="sapUiSmallMargin">
+                        <Panel headerText="Advisee Birthdays" width="48%" class="sapUiSmallMarginEnd">
+                            <layout:HorizontalLayout width="100%" allowContentWrap="true" class="sapUiTinyMargin">
                                 <unified:Calendar
                                     id="birthdayCalendar"
+                                    width="320px"
                                     months="1"
                                     singleSelection="false">
                                     <unified:specialDates path="advisorDashboard>/birthdays">
@@ -180,7 +181,8 @@
 
                                 <List
                                     id="birthdayList"
-                                    class="sapUiSmallMarginBegin"
+                                    width="100%"
+                                    class="sapUiTinyMarginBegin"
                                     headerText="Upcoming Birthdays"
                                     items="{advisorDashboard>/birthdays}">
                                     <StandardListItem
@@ -194,7 +196,7 @@
                             </layout:HorizontalLayout>
                         </Panel>
 
-                        <Panel headerText="Recent Alerts and Notifications" width="50%" class="sapUiSmallMarginBegin">
+                        <Panel headerText="Recent Alerts and Notifications" width="48%" class="sapUiSmallMarginBegin">
                             <List items="{advisorDashboard>/recentAlerts}">
                                 <StandardListItem
                                     title="{advisorDashboard>title}"
