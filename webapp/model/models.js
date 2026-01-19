@@ -36,7 +36,7 @@ function (JSONModel, Device) {
                     creditsRequired: 120,
                     currentCourses: 6,
                     academicStanding: "Good",
-                    standingColor: "Success"
+                    standingColor: "Good"
                 },
                 gpaTrend: [
                     { semester: "Sem 1 2023", gpa: 3.45 },
