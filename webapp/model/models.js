@@ -36,7 +36,7 @@ function (JSONModel, Device) {
                     creditsRequired: 120,
                     currentCourses: 6,
                     academicStanding: "Good",
-                    standingColor: "Good"
+                    standingColor: "Success"
                 },
                 gpaTrend: [
                     { semester: "Sem 1 2023", gpa: 3.45 },
@@ -63,7 +63,7 @@ function (JSONModel, Device) {
                         courseName: "Machine Learning",
                         credits: 4,
                         currentGrade: "B+",
-                        gradeState: "Good",
+                        gradeState: "Success",
                         attendance: 88,
                         attendanceState: "Warning",
                         status: "On Track",
@@ -85,7 +85,7 @@ function (JSONModel, Device) {
                         courseName: "Computer Networks",
                         credits: 3,
                         currentGrade: "B",
-                        gradeState: "Good",
+                        gradeState: "Success",
                         attendance: 85,
                         attendanceState: "Warning",
                         status: "On Track",
@@ -163,7 +163,7 @@ function (JSONModel, Device) {
                     {
                         semester: "Semester 1, 2023",
                         gpa: 3.45,
-                        gpaState: "Good",
+                        gpaState: "Success",
                         credits: 12,
                         courseCount: 4,
                         standing: "Good Standing",
