@@ -93,6 +93,13 @@
             "target": [
               "TargetAdvisorDashboard"
             ]
+          },
+          {
+            "name": "RouteAdminDashboard",
+            "pattern": "admindashboard",
+            "target": [
+              "TargetAdminDashboard"
+            ]
           }
       ],
       "targets": {
@@ -107,6 +114,10 @@
           "TargetAdvisorDashboard": {
             "id": "AdvisorDashboard",
             "name": "AdvisorDashboard"
+          },
+          "TargetAdminDashboard": {
+            "id": "AdminDashboard",
+            "name": "AdminDashboard"
           }
       }
     },
