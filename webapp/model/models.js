@@ -441,6 +441,165 @@ function (JSONModel, Device) {
                 var oModel = new JSONModel(oData);
                 oModel.setDefaultBindingMode("TwoWay");
                 return oModel;
+            },
+
+            /**
+             * Creates a JSON model containing mock admin dashboard data.
+             * @returns {sap.ui.model.json.JSONModel} The admin dashboard model.
+             */
+            createAdminDashboardModel: function () {
+                var oData = {
+                    adminInfo: {
+                        name: "Dr. Ahmad Ibrahim",
+                        role: "Academic Administrator",
+                        department: "Administration"
+                    },
+                    systemStats: {
+                        totalStudents: 487,
+                        totalAdvisors: 15,
+                        atRiskStudents: 28,
+                        averageGPA: "3.34",
+                        pendingActions: 12
+                    },
+                    enrollmentTrend: [
+                        { semester: "Sem 1 2024", count: 445 },
+                        { semester: "Sem 2 2024", count: 458 },
+                        { semester: "Sem 1 2025", count: 472 },
+                        { semester: "Sem 2 2025", count: 480 },
+                        { semester: "Sem 1 2026", count: 487 }
+                    ],
+                    departments: [
+                        {
+                            name: "Computer Science",
+                            studentCount: 245,
+                            averageGPA: 3.42,
+                            gpaState: "Success",
+                            advisorCount: 8,
+                            atRiskCount: 12,
+                            riskState: "Warning",
+                            status: "Performing Well",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Information Technology",
+                            studentCount: 178,
+                            averageGPA: 3.28,
+                            gpaState: "Success",
+                            advisorCount: 5,
+                            atRiskCount: 10,
+                            riskState: "Warning",
+                            status: "On Track",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Data Science",
+                            studentCount: 64,
+                            averageGPA: 3.35,
+                            gpaState: "Success",
+                            advisorCount: 2,
+                            atRiskCount: 6,
+                            riskState: "Warning",
+                            status: "On Track",
+                            statusState: "Success"
+                        }
+                    ],
+                    advisors: [
+                        {
+                            name: "Dr. Assoc. Prof. Noorminshah",
+                            department: "Computer Science",
+                            adviseeCount: 12,
+                            atRiskCount: 3,
+                            riskState: "Warning",
+                            activeSince: "2020",
+                            status: "Active",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Dr. Wong Keng Yinn",
+                            department: "Computer Science",
+                            adviseeCount: 15,
+                            atRiskCount: 2,
+                            riskState: "Success",
+                            activeSince: "2019",
+                            status: "Active",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Dr. Aliff Ahmad",
+                            department: "Computer Science",
+                            adviseeCount: 14,
+                            atRiskCount: 4,
+                            riskState: "Warning",
+                            activeSince: "2021",
+                            status: "Active",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Prof. Sarah Lee",
+                            department: "Information Technology",
+                            adviseeCount: 18,
+                            atRiskCount: 5,
+                            riskState: "Error",
+                            activeSince: "2018",
+                            status: "Active",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Dr. Kumar Rajesh",
+                            department: "Information Technology",
+                            adviseeCount: 13,
+                            atRiskCount: 2,
+                            riskState: "Success",
+                            activeSince: "2022",
+                            status: "Active",
+                            statusState: "Success"
+                        },
+                        {
+                            name: "Dr. Emily Chen",
+                            department: "Data Science",
+                            adviseeCount: 16,
+                            atRiskCount: 3,
+                            riskState: "Warning",
+                            activeSince: "2020",
+                            status: "Active",
+                            statusState: "Success"
+                        }
+                    ],
+                    systemAlerts: [
+                        {
+                            title: "High At-Risk Student Count in IT Department",
+                            description: "Information Technology department has 10 at-risk students requiring immediate attention",
+                            icon: "sap-icon://alert",
+                            date: "Today",
+                            severity: "Error"
+                        },
+                        {
+                            title: "Advisor Capacity Alert",
+                            description: "Prof. Sarah Lee has 18 advisees, exceeding recommended maximum of 15",
+                            icon: "sap-icon://warning",
+                            date: "1 day ago",
+                            severity: "Warning"
+                        },
+                        {
+                            title: "System Maintenance Scheduled",
+                            description: "Scheduled system maintenance on January 25, 2026, 2:00 AM - 4:00 AM",
+                            icon: "sap-icon://information",
+                            date: "2 days ago",
+                            severity: "Information"
+                        },
+                        {
+                            title: "New Semester Registration Opens",
+                            description: "Registration for Semester 2, 2026 opens on February 1, 2026",
+                            icon: "sap-icon://calendar",
+                            date: "3 days ago",
+                            severity: "Information"
+                        }
+                    ]
+                };
+
+                var oModel = new JSONModel(oData);
+                oModel.setDefaultBindingMode("TwoWay");
+                return oModel;
             }
     };
 
