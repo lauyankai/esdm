@@ -164,34 +164,37 @@
 
                     <!-- Birthdays and Recent Alerts side by side -->
                     <layout:HorizontalLayout width="100%" class="sapUiMediumMargin">
-                        <Panel headerText="Advisee Birthdays" width="50%" class="sapUiTinyMarginEnd">
-                            <List
-                                id="birthdayList"
-                                headerText="Upcoming Birthdays"
-                                items="{advisorDashboard>/birthdays}">
-                                <StandardListItem
-                                    title="{advisorDashboard>name}"
-                                    description="{advisorDashboard>studentId} · {advisorDashboard>major}"
-                                    icon="sap-icon://appointment-2"
-                                    iconInset="false"
-                                    info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
-                                    infoState="Information"/>
-                            </List>
-                        </Panel>
+                        <GenericTile header="Advisee Birthdays" width="50%" class="sapUiTinyMarginEnd">
+                            <TileContent>
+                                <List
+                                    id="birthdayList"
+                                    items="{advisorDashboard>/birthdays}">
+                                    <StandardListItem
+                                        title="{advisorDashboard>name}"
+                                        description="{advisorDashboard>studentId} · {advisorDashboard>major}"
+                                        icon="sap-icon://appointment-2"
+                                        iconInset="false"
+                                        info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
+                                        infoState="Information"/>
+                                </List>
+                            </TileContent>
+                        </GenericTile>
 
-                        <Panel headerText="Recent Alerts and Notifications" width="50%" class="sapUiTinyMarginBegin">
-                            <List items="{advisorDashboard>/recentAlerts}">
-                                <StandardListItem
-                                    title="{advisorDashboard>title}"
-                                    description="{advisorDashboard>description}"
-                                    icon="{advisorDashboard>icon}"
-                                    iconInset="false"
-                                    type="Active"
-                                    press=".onAlertPress"
-                                    info="{advisorDashboard>date}"
-                                    infoState="{advisorDashboard>severity}"/>
-                            </List>
-                        </Panel>
+                        <GenericTile header="Recent Alerts and Notifications" width="50%" class="sapUiTinyMarginBegin">
+                            <TileContent>
+                                <List items="{advisorDashboard>/recentAlerts}">
+                                    <StandardListItem
+                                        title="{advisorDashboard>title}"
+                                        description="{advisorDashboard>description}"
+                                        icon="{advisorDashboard>icon}"
+                                        iconInset="false"
+                                        type="Active"
+                                        press=".onAlertPress"
+                                        info="{advisorDashboard>date}"
+                                        infoState="{advisorDashboard>severity}"/>
+                                </List>
+                            </TileContent>
+                        </GenericTile>
                     </layout:HorizontalLayout>
 
                 </layout:VerticalLayout>
