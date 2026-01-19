@@ -82,7 +82,8 @@
                             uiConfig="{applicationSet:'fiori'}" 
                             height="400px" 
                             width="100%" 
-                            vizType='column'>
+                            vizType='column'
+                            showTitle="false">
                             <viz:dataset>
                                 <viz.data:FlattenedDataset data="{adminDashboard>/enrollmentTrend}">
                                     <viz.data:dimensions>
