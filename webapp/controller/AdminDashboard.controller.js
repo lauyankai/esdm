@@ -113,25 +113,42 @@ sap.ui.define([
             const oAdminModel = this.getOwnerComponent().getModel("adminDashboard");
             const oModel = this.getView().getModel("adminDashboard");
             
+            console.log("Setting up allocation dialog");
+            console.log("Admin model data:", oAdminModel?.getData());
+            
             // Get all students from model data (if available)
             const allStudents = oAdminModel?.getData()?.allStudents || [];
+            console.log("All students count:", allStudents.length);
             
             // Set up initial students list if not already in model
             if (!oModel.getProperty("/allStudents") || oModel.getProperty("/allStudents").length === 0) {
                 oModel.setProperty("/allStudents", allStudents);
             }
 
-            // Reset selections using Fragment.byId
+            // Try to reset selections using Fragment.byId - but handle errors gracefully
             const sViewId = this.getView().getId();
-            const oTable = Fragment.byId(sViewId, "studentSelectionTable");
-            if (oTable) {
-                oTable.clearSelection();
+            
+            try {
+                const oTable = Fragment.byId(sViewId, "studentSelectionTable");
+                console.log("Table found:", !!oTable);
+                if (oTable && typeof oTable.removeSelections === "function") {
+                    oTable.removeSelections(true);
+                } else if (oTable && typeof oTable.clearSelection === "function") {
+                    oTable.clearSelection();
+                }
+            } catch (e) {
+                console.warn("Could not clear table selection:", e);
             }
             
             // Reset advisor selection
-            const oAdvisorSelect = Fragment.byId(sViewId, "advisorSelect");
-            if (oAdvisorSelect) {
-                oAdvisorSelect.setSelectedKey("");
+            try {
+                const oAdvisorSelect = Fragment.byId(sViewId, "advisorSelect");
+                console.log("Advisor select found:", !!oAdvisorSelect);
+                if (oAdvisorSelect && typeof oAdvisorSelect.setSelectedKey === "function") {
+                    oAdvisorSelect.setSelectedKey("");
+                }
+            } catch (e) {
+                console.warn("Could not reset advisor selection:", e);
             }
 
             this.oAllocationDialog.open();
