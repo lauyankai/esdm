@@ -135,22 +135,28 @@ sap.ui.define([
         onStatusFilterChange(oEvent) {
             // Filter students based on selected status
             const sStatus = oEvent.getSource().getSelectedKey();
+            const sViewId = this.getView().getId();
+            const oTable = Fragment.byId(sViewId, "studentSelectionTable");
             const oModel = this.getView().getModel("adminDashboard");
             const aAllStudents = oModel.getProperty("/allStudents");
-            let aFiltered = [];
 
-            switch(sStatus) {
-                case "unassigned":
-                    aFiltered = aAllStudents.filter(s => !s.currentAdvisor);
-                    break;
-                case "atrisk":
-                    aFiltered = aAllStudents.filter(s => s.isAtRisk);
-                    break;
-                default: // "all"
-                    aFiltered = aAllStudents;
+            if (oTable && oTable.getItems) {
+                const aItems = oTable.getItems();
+                aItems.forEach((oItem, iIndex) => {
+                    const oItemData = aAllStudents[iIndex];
+                    let bVisible = false;
+                    
+                    if (sStatus === "unassigned") {
+                        bVisible = !oItemData?.currentAdvisor;
+                    } else if (sStatus === "atrisk") {
+                        bVisible = oItemData?.isAtRisk;
+                    } else {
+                        bVisible = true;
+                    }
+                    
+                    oItem.setVisible(bVisible);
+                });
             }
-
-            oModel.setProperty("/filteredStudents", aFiltered);
         },
 
         onAllocateStudents() {
