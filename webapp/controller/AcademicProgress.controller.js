@@ -8,13 +8,7 @@ sap.ui.define([
     return Controller.extend("projectesdm.controller.AcademicProgress", {
         
         onInit() {
-            // Get the router
-            const oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("RouteAcademicProgress").attachPatternMatched(this._onObjectMatched, this);
-        },
-
-        _onObjectMatched(oEvent) {
-            // Initialize the academic progress model when route is matched
+            // Initialize the model immediately (don't wait for route match)
             this._initializeModel();
         },
 
@@ -24,6 +18,8 @@ sap.ui.define([
             
             if (!oModel) {
                 MessageToast.show("Unable to load academic progress data");
+            } else {
+                MessageToast.show("Academic Progress Dashboard loaded successfully");
             }
         },
 
