@@ -164,17 +164,35 @@
 
                     <!-- Advisee Birthdays -->
                     <Panel headerText="Advisee Birthdays" class="sapUiMediumMargin" width="95%">
-                        <List
-                            id="birthdayList"
-                            items="{advisorDashboard>/birthdays}">
-                            <StandardListItem
-                                title="{advisorDashboard>name}"
-                                description="{advisorDashboard>studentId} · {advisorDashboard>major}"
-                                icon="sap-icon://appointment-2"
-                                iconInset="false"
-                                info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
-                                infoState="Information"/>
-                        </List>
+                        <layout:HorizontalLayout width="100%">
+                            <unified:Calendar
+                                id="birthdayCalendar"
+                                width="320px"
+                                months="1"
+                                singleSelection="false"
+                                class="sapUiSmallMarginEnd">
+                                <unified:specialDates path="advisorDashboard>/birthdays">
+                                    <unified:DateTypeRange
+                                        startDate="{advisorDashboard>date}"
+                                        type="Type01"
+                                        tooltip="{advisorDashboard>name}" />
+                                </unified:specialDates>
+                            </unified:Calendar>
+                            
+                            <List
+                                id="birthdayList"
+                                width="100%"
+                                headerText="Upcoming Birthdays"
+                                items="{advisorDashboard>/birthdays}">
+                                <StandardListItem
+                                    title="{advisorDashboard>name}"
+                                    description="{advisorDashboard>studentId} · {advisorDashboard>major}"
+                                    icon="sap-icon://appointment-2"
+                                    iconInset="false"
+                                    info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
+                                    infoState="Information"/>
+                            </List>
+                        </layout:HorizontalLayout>
                     </Panel>
 
                     <!-- Recent Alerts Section -->
