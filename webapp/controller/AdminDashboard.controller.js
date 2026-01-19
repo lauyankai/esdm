@@ -90,8 +90,13 @@ sap.ui.define([
                     controller: this
                 }).then((oDialog) => {
                     this.oAllocationDialog = oDialog;
+                    // Bind the model to the dialog
+                    const oModel = this.getView().getModel("adminDashboard");
+                    oDialog.setModel(oModel, "adminDashboard");
                     this.getView().addDependent(oDialog);
                     this._setupAllocationDialog();
+                }).catch((oError) => {
+                    MessageBox.error("Failed to load allocation dialog: " + oError);
                 });
             } else {
                 this._setupAllocationDialog();
