@@ -30,6 +30,17 @@ sap.ui.define([
                     MessageToast.show("Navigation error: " + error.message);
                     console.error("Navigation error:", error);
                 }
+            },
+
+            onNavigateToAdminDashboard() {
+                try {
+                    const oRouter = this.getOwnerComponent().getRouter();
+                    console.log("Navigating to Admin Dashboard");
+                    oRouter.navTo("RouteAdminDashboard");
+                } catch (error) {
+                    MessageToast.show("Navigation error: " + error.message);
+                    console.error("Navigation error:", error);
+                }
             }
     });
 });
