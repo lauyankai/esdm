@@ -516,6 +516,7 @@ function (JSONModel, Device) {
                             statusState: "Success"
                         },
                         {
+                            advisorId: "ADV002",
                             name: "Dr. Wong Keng Yinn",
                             department: "Computer Science",
                             adviseeCount: 15,
@@ -526,6 +527,7 @@ function (JSONModel, Device) {
                             statusState: "Success"
                         },
                         {
+                            advisorId: "ADV003",
                             name: "Dr. Aliff Ahmad",
                             department: "Computer Science",
                             adviseeCount: 14,
@@ -536,6 +538,7 @@ function (JSONModel, Device) {
                             statusState: "Success"
                         },
                         {
+                            advisorId: "ADV004",
                             name: "Prof. Sarah Lee",
                             department: "Information Technology",
                             adviseeCount: 18,
@@ -546,6 +549,7 @@ function (JSONModel, Device) {
                             statusState: "Success"
                         },
                         {
+                            advisorId: "ADV005",
                             name: "Dr. Kumar Rajesh",
                             department: "Information Technology",
                             adviseeCount: 13,
@@ -556,6 +560,7 @@ function (JSONModel, Device) {
                             statusState: "Success"
                         },
                         {
+                            advisorId: "ADV006",
                             name: "Dr. Emily Chen",
                             department: "Data Science",
                             adviseeCount: 16,
