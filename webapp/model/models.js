@@ -194,6 +194,44 @@ function (JSONModel, Device) {
                         goodStandingCount: 8,
                         averageGPA: "3.42"
                     },
+                    birthdays: [
+                        {
+                            studentId: "A23CS0098",
+                            name: "Lau Yan Kai",
+                            date: new Date("2004-08-03"),
+                            major: "Computer Science"
+                        },
+                        {
+                            studentId: "A23CS0022",
+                            name: "Joanne Ching",
+                            date: new Date("2004-07-15"),
+                            major: "Computer Science"
+                        },
+                        {
+                            studentId: "A23CS0061",
+                            name: "Chew Chu Xian",
+                            date: new Date("2004-09-09"),
+                            major: "Computer Science"
+                        },
+                        {
+                            studentId: "A24CS0105",
+                            name: "Ahmad bin Hassan",
+                            date: new Date("2005-02-22"),
+                            major: "Computer Science"
+                        },
+                        {
+                            studentId: "A25CS0078",
+                            name: "Emily Tan",
+                            date: new Date("2006-11-05"),
+                            major: "Computer Science"
+                        },
+                        {
+                            studentId: "A24CS0156",
+                            name: "David Chen",
+                            date: new Date("2005-01-30"),
+                            major: "Computer Science"
+                        }
+                    ],
                     advisees: [
                         {
                             studentId: "A23CS0098",

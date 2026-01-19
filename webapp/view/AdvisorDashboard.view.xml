@@ -4,7 +4,8 @@
     xmlns="sap.m"
     xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core"
-    xmlns:f="sap.ui.layout.form">
+    xmlns:f="sap.ui.layout.form"
+    xmlns:unified="sap.ui.unified">
     
     <Page id="advisorDashboardPage" title="Academic Advisor Dashboard" showNavButton="true" navButtonPress=".onNavBack">
         <content>
@@ -159,6 +160,37 @@
                                 </ColumnListItem>
                             </items>
                         </Table>
+                    </Panel>
+
+                    <!-- Birthdays Calendar -->
+                    <Panel headerText="Advisee Birthdays" class="sapUiMediumMargin" width="95%">
+                        <layout:HorizontalLayout width="100%" class="sapUiSmallMargin">
+                            <unified:Calendar
+                                id="birthdayCalendar"
+                                months="1"
+                                singleSelection="false">
+                                <unified:specialDates path="advisorDashboard>/birthdays">
+                                    <unified:DateTypeRange
+                                        startDate="{advisorDashboard>date}"
+                                        type="Type01"
+                                        tooltip="{advisorDashboard>name}" />
+                                </unified:specialDates>
+                            </unified:Calendar>
+
+                            <List
+                                id="birthdayList"
+                                class="sapUiSmallMarginBegin"
+                                headerText="Upcoming Birthdays"
+                                items="{advisorDashboard>/birthdays}">
+                                <StandardListItem
+                                    title="{advisorDashboard>name}"
+                                    description="{advisorDashboard>studentId} · {advisorDashboard>major}"
+                                    icon="sap-icon://appointment-2"
+                                    iconInset="false"
+                                    info="{path: 'advisorDashboard>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
+                                    infoState="Information"/>
+                            </List>
+                        </layout:HorizontalLayout>
                     </Panel>
 
                     <!-- Recent Alerts Section -->
