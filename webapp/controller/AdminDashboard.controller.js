@@ -84,21 +84,26 @@ sap.ui.define([
         onOpenAllocationDialog() {
             // Load the dialog fragment
             if (!this.oAllocationDialog) {
+                console.log("Loading allocation dialog fragment...");
                 Fragment.load({
                     id: this.getView().getId(),
                     name: "projectesdm.view.StudentAllocationDialog",
                     controller: this
                 }).then((oDialog) => {
+                    console.log("Dialog loaded successfully");
                     this.oAllocationDialog = oDialog;
                     // Bind the model to the dialog
                     const oModel = this.getView().getModel("adminDashboard");
+                    console.log("Model:", oModel?.getData?.allStudents?.length, "students");
                     oDialog.setModel(oModel, "adminDashboard");
                     this.getView().addDependent(oDialog);
                     this._setupAllocationDialog();
                 }).catch((oError) => {
+                    console.error("Failed to load dialog:", oError);
                     MessageBox.error("Failed to load allocation dialog: " + oError);
                 });
             } else {
+                console.log("Dialog already loaded, opening...");
                 this._setupAllocationDialog();
             }
         },
